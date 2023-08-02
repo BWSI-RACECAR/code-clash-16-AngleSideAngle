@@ -62,14 +62,18 @@ class Solution:
             cur_dir=2
             
             #TODO: Write code below to returnn a boolean value with the solution to the prompt.
-            for ch in instructions * 4:
-                if ch == 'G':
-                    cur_pos += direction[cur_dir]
-                else:
-                    cur_dir += 1 if ch == 'R' else -1
-                    cur_dir %= 4
+            for _ in range(4):
+                for ch in instructions:
+                    if ch == 'G':
+                        cur_pos += direction[cur_dir]
+                    else:
+                        cur_dir += 1 if ch == 'R' else -1
+                        cur_dir %= 4
 
-            return cur_pos == initial_pos
+                    if cur_pos == initial_pos:
+                        return True
+
+            return False
         
 def main():
     input1=input()
