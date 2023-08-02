@@ -58,15 +58,16 @@ class Solution:
             #return type: boolean
             initial_pos=[0,0]
             cur_pos=[0,0]
-            direction= {'S':(0, -1),'W':(-1, 0),'N':(0, 1),'E':(1, 0)} # Reference for cur_dir (current direction)
-            cur_dir=direction['N']
+            direction= {0:(0, -1),1:(-1, 0),2:(0, 1),3:(1, 0)} # Reference for cur_dir (current direction)
+            cur_dir=2
             
             #TODO: Write code below to returnn a boolean value with the solution to the prompt.
             for ch in instructions * 4:
                 if ch == 'G':
-                    cur_pos += direction
+                    cur_pos += direction[cur_dir]
                 else:
-                    cur_dir = direction[ch]
+                    cur_dir += 1 if ch == 'R' else -1
+                    cur_dir %= 4
 
             return cur_pos == initial_pos
         
