@@ -64,7 +64,7 @@ class Solution:
             #TODO: Write code below to returnn a boolean value with the solution to the prompt.
             for ch in instructions * 4:
                 if ch == 'G':
-                    cur_pos += direction[cur_dir]
+                    cur_pos = [sum(x) for x in zip(cur_pos, direction[cur_dir])]
                 else:
                     cur_dir += 1 if ch == 'R' else -1
                     cur_dir %= 4
