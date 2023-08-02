@@ -58,22 +58,18 @@ class Solution:
             #return type: boolean
             initial_pos=[0,0]
             cur_pos=[0,0]
-            direction= {0:(0, -1),1:(-1, 0),2:(0, 1),3:(1, 0)} # Reference for cur_dir (current direction)
+            direction= {0:[0, -1],1:[-1, 0],2:[0, 1],3:[1, 0]} # Reference for cur_dir (current direction)
             cur_dir=2
             
             #TODO: Write code below to returnn a boolean value with the solution to the prompt.
-            for _ in range(4):
-                for ch in instructions:
-                    if ch == 'G':
-                        cur_pos += direction[cur_dir]
-                    else:
-                        cur_dir += 1 if ch == 'R' else -1
-                        cur_dir %= 4
+            for ch in instructions * 4:
+                if ch == 'G':
+                    cur_pos += direction[cur_dir]
+                else:
+                    cur_dir += 1 if ch == 'R' else -1
+                    cur_dir %= 4
 
-                    if cur_pos == initial_pos:
-                        return True
-
-            return False
+            return cur_pos == initial_pos
         
 def main():
     input1=input()
